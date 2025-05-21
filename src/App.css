@@ -1,0 +1,34 @@
+.login-button {
+  display: flex;
+  justify-content: flex-end;
+  margin : 20px;
+}
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: center;
+}
+
+.menuBtn-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.menuBtn-list li {
+  padding : 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.search-box {
+  border-width : 0 0 1px;
+  background-color: #dc5c51;
+  padding: 5px;
+}
