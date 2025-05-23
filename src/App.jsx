@@ -1,15 +1,17 @@
-import { useState } from 'react'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router";
 
 /* 페이지 목록 : 전체상품페이지, 로그인 , 상세상품 페이지 */
-import ProductAll from './page/ProductAll'
+import MenuAll from './page/MenuAll'
 import Login from './page/Login'
-import ProductDetail from './page/ProductDetail';
+import MenuDetail from './page/MenuDetail';
 /* 페이지 목록 (e) */
 
 /* 컴포넌트 목록 */ 
 import Navbar from './component/Navbar'
+import { Link } from 'react-router-dom';
 /* 컴포넌트 목록 (e)*/
 
 // 1.유저는 메뉴와 상품들을 볼 수 있다. -> 전제,상세상품
@@ -21,13 +23,18 @@ import Navbar from './component/Navbar'
 // 6.유저는 로그아웃할 수 있다.
 
 function App() {
+  const [authenticate, setAuthenticate] = useState(false);  // t:로그인 / f:로그아웃
+  useEffect(()=> {
+    console.log("AAA ?" ,authenticate);
+  }, [authenticate])
+  
   return (
     <div>
       <Navbar/>      {/* 네비게이션 바 */}
       <Routes>
-        <Route path="/" element={<ProductAll/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/product/:id" element={<ProductDetail/>}/>
+        <Route path="/" element={<MenuAll/>}/>
+        <Route path="/login" element={<Login setAuthenticate = {setAuthenticate}/>}/>
+        <Route path="/product/:id" element={<MenuDetail/>}/>
       </Routes>
     </div>
   )
