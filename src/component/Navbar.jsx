@@ -2,19 +2,24 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser  } from '@fortawesome/free-regular-svg-icons'
 import { faUserMinus, faMagnifyingGlass, faBasketShopping} from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Navbar = ({authenticate, setAuthenticate}) => {
-    const menuList = ['소개', '공지사항', '메뉴', '주문', '쿠폰' ]
+    const menuList = ['소개', '메뉴', '주문' ]      // 메뉴 리스트
+    const urlList = ['/intro', '/', '/order']       // 메뉴 url 리스트
+    const [menuActive, setMenuActive] = useState('2');         // 메뉴 클릭 여부
     const navigate = useNavigate();
+    const location = useLocation();
 
     // 로고 클릭 시 메인으로 이동
     const goToMain = () => {
+        setMenuActive('2');
         navigate('/');
     }
 
     // 로그인 페이지 이동
     const goToLogin = () => {
+       setMenuActive();
        navigate('/login');
     }
 
@@ -26,6 +31,7 @@ const Navbar = ({authenticate, setAuthenticate}) => {
     // 장바구니
     const bascketNavigate = useNavigate();
     const goToBascket = () => {
+        setMenuActive();
         bascketNavigate('/basket');
     }
 
@@ -38,6 +44,37 @@ const Navbar = ({authenticate, setAuthenticate}) => {
             navigate('/?q='+`${keyword}`);
         }
     }
+
+    // 메뉴버튼 클릭
+    const clickMenuBtn = (e, index) => {
+        setMenuActive(index);
+        navigate(urlList[index])
+    }
+
+    useEffect(() => {
+        console.log("menuActive ? ", menuActive)
+    }, [menuActive])
+
+    useEffect (()=> {
+        let tempFlag = [];
+        urlList.forEach((item, index) => {
+            if( item == location.pathname ){
+                setMenuActive(index)
+                tempFlag.push(true);
+            } else {
+                tempFlag.push(false);
+            }
+        })
+
+        let flag = tempFlag.every((item, index) => {
+            return !item
+        })
+
+        if(flag){
+            setMenuActive();
+        }
+
+    },[location])
 
   return (
     <div style={{'backgroundColor' : '#dc5c51'}}>
@@ -70,7 +107,7 @@ const Navbar = ({authenticate, setAuthenticate}) => {
        
         {/* 메뉴 버튼 (s) */}
         <ul className="menuBtn-list">
-            {menuList.map((menu, index) => <li key={index}>{menu}</li>)}
+            {menuList.map((menu, index) => <li key={index} className={ index == menuActive ? 'menuActive' : ''} onClick={(e)=>{clickMenuBtn(e,index)}}>{menu}</li>)}
         </ul>
         {/* 메뉴 버튼 (e) */}
     </div>

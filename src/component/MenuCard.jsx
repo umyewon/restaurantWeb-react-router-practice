@@ -10,7 +10,7 @@ const MenuCard = ({item}) => {
 
   return (
     <div className="menucard-wrap">
-        <div className="img-wrap" onClick={ goToDetail}>
+        <div className="img-wrap" onClick={ goToDetail }>
             {item.choice? <img className="recommend-icon" src={best} /> : ''} 
             <a className="menu-img">
                 <img src={item?.img}/>

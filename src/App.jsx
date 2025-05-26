@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router";
 import MenuAll from './page/MenuAll'
 import Login from './page/Login'
 import PrivateRoute from './route/PrivateRoute';
+import Intro from './page/Intro'
+import Order from './page/Order'
 /* 페이지 목록 (e) */
 
 /* 컴포넌트 목록 */ 
@@ -34,6 +36,8 @@ function App() {
         <Route path="/login" element={<Login setAuthenticate = {setAuthenticate}/>}/>
         <Route path="/product/:id" element={<PrivateRoute from = {'product'} authenticate = {authenticate}/>}/>
         <Route path="/basket" element={<PrivateRoute from = {'bascket'} authenticate = {authenticate}/>}/>
+        <Route path="/intro" element={<Intro/>}/>
+        <Route path="/order" element={<Order authenticate = {authenticate} />}/>
       </Routes>
     </div>
   )

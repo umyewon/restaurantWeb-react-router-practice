@@ -6,11 +6,6 @@
     font-style: normal;
 }
 
-a:link {
-  color : black;
-  text-decoration: none;
-}
-
 /* Navbar.jsx (s) */
 .login-button {
   display: flex;
@@ -55,6 +50,10 @@ a:link {
   cursor: pointer;
 }
 
+.menuActive {
+  color : #feae62;
+}
+
 input:focus {
   outline: none;
 }
@@ -67,6 +66,36 @@ input:focus {
   padding: 5px;
 }
 /* Navbar.jsx (e) */
+
+/* MenuAll.jsx (s) */
+.loadingWrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.loadingErrorMsg {
+    font-family: "Jua", sans-serif;
+    font-style: normal;
+    color : #ffffff;
+    background-color : rgba(255, 32, 32, 0.61);
+    animation: blink 1s infinite; /* 1초 간격으로 무한 반복 */
+    height: 100px;
+    padding : 20px;
+    border-radius: 10px;
+}
+
+.noSearchResult {
+  color : #dc5c51;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Jua", sans-serif;
+  font-style: normal;
+  margin-top: 15%
+}
+/* MenuAll.jsx (e) */
+
 
 /* MenuCard.jsx (s) */
 .menucard-wrap {
@@ -145,14 +174,14 @@ input:focus {
 /* MenuCard.jsx (e) */
 
 /* Login.jsx (s) */
-.container {
+.loginContainer {
   font-family: "Jua", sans-serif;
 }
 
-.container input {
+.loginContainer input {
   color: #ff7777;
 }
-.container input::placeholder {
+.loginContainer input::placeholder {
   color: #979797;
 }
 
@@ -205,3 +234,29 @@ input:focus {
   font-family: "TmoneyRoundWind", sans-serif;
 }
 /* MenuDetail.jsx (e) */
+
+/* Intro.jsx(s) */
+.introWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #dc5c51;
+  font-family: "Jua", sans-serif;
+  background-color: antiquewhite;
+  padding: 3%;
+  margin: 5%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.intro-content {
+  font-family: "TmoneyRoundWind", sans-serif;
+  text-align: left;
+  color: #606060;
+}
+/* Intro.jsx(e) */
+
+/* Order.jsx(e) */
+
+/* Order.jsx(e) */

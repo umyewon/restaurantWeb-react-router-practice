@@ -24,7 +24,7 @@ const Login = ({setAuthenticate}) => {
   }
 
   return (
-    <Container>
+    <Container className="loginContainer">
       <Form onSubmit = { (event) => loginUser(event)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>이메일</Form.Label>
