@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Gowun+Dodum&family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+@font-face {
+    font-family: 'TmoneyRoundWindExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 a:link {
   color : black;
   text-decoration: none;
@@ -7,7 +14,7 @@ a:link {
 /* Navbar.jsx (s) */
 .login-button {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding : 3%;
   font-family: "Gaegu", sans-serif;
   font-size: 15px;
@@ -16,7 +23,7 @@ a:link {
   cursor : pointer;
 }
 
-.login-button:hover {
+.login-button p:hover {
   color : #feae62;
 }
 
@@ -88,9 +95,11 @@ input:focus {
 .img-wrap .recommend-icon {
   position : absolute;
   z-index: 2;
-  width: 3%;
-  height: 5%;
-  margin: 1%;
+  width: 55px;
+  height: 35px;
+  margin: 1.0%;
+  display: flex;
+  justify-content: flex-start;
 } 
 
 .info-wrap {
@@ -136,8 +145,20 @@ input:focus {
 /* MenuCard.jsx (e) */
 
 /* Login.jsx (s) */
+.container {
+  font-family: "Jua", sans-serif;
+}
+
+.container input {
+  color: #ff7777;
+}
+.container input::placeholder {
+  color: #979797;
+}
+
 .login-btn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2%;
@@ -145,7 +166,7 @@ input:focus {
   cursor : pointer;
 }
 
-.login-btn button {
+.redBtn {
   border-radius: 5px;
   background-color: #dc5c51;
   border: none;
@@ -154,11 +175,33 @@ input:focus {
   font-weight: bold;
   font-style: normal;
   font-size: 100%;
+  margin-top: 3%;
   width: 80px;
   height: 35px;
 }
-.login-btn button:hover {
+.redBtn:hover {
   background-color: #ffffff;
   border: 2px solid #dc5c51;
 }
 /* Login.jsx (e)  */
+
+/* MenuDetail.jsx (s) */
+.menu-img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menuDetail-title {
+  font-size: 120%;
+  color: #dc5c51;
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start; 
+  gap: 4px;               
+  font-family: "TmoneyRoundWindExtraBold", sans-serif;
+  line-height: 1.8;  
+}
+.menuDetail-des {        
+  font-family: "TmoneyRoundWind", sans-serif;
+}
+/* MenuDetail.jsx (e) */

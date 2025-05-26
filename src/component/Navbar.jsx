@@ -1,32 +1,57 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser  } from '@fortawesome/free-regular-svg-icons'
-import { faUserMinus, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import { faUserMinus, faMagnifyingGlass, faBasketShopping} from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({authenticate, setAuthenticate}) => {
     const menuList = ['소개', '공지사항', '메뉴', '주문', '쿠폰' ]
-    const mainNavigate = useNavigate();
+    const navigate = useNavigate();
+
+    // 로고 클릭 시 메인으로 이동
     const goToMain = () => {
-        mainNavigate('/');
+        navigate('/');
     }
-    const loginNavigate = useNavigate();
+
+    // 로그인 페이지 이동
     const goToLogin = () => {
-       loginNavigate('/login');
+       navigate('/login');
+    }
+
+    // 로그아웃
+    const goToLogut = () => {
+        setAuthenticate (false)
+    }
+
+    // 장바구니
+    const bascketNavigate = useNavigate();
+    const goToBascket = () => {
+        bascketNavigate('/basket');
+    }
+
+    // 검색
+    const goSearch = (e) => {
+        if(e.key == 'Enter'){
+            // 입력한 검색어를 읽어와서
+            let keyword = e.target.value;
+            // url을 바꿔준다
+            navigate('/?q='+`${keyword}`);
+        }
     }
 
   return (
     <div style={{'backgroundColor' : '#dc5c51'}}>
-
         {/* 로그인 버튼 영역 (s) */}
-        <div>
-            <div className="login-button" onClick={goToLogin}>
-                <p><span><FontAwesomeIcon icon={faUser} /></span> 로그인</p>
-            </div>
-            {/* <div className="login-button">
-                <FontAwesomeIcon icon={faUserMinus} />
-                <p>logout</p>
-            </div> */}
+        <div className="login-button">
+            { !authenticate &&  
+                <p onClick={goToLogin}><span><FontAwesomeIcon icon={faUser} /></span> 로그인</p>
+            }
+            {authenticate &&         
+                <>
+                <p onClick={goToBascket}><span><FontAwesomeIcon icon={faBasketShopping}/></span> 장바구니</p>
+                <p onClick={goToLogut}><span><FontAwesomeIcon icon={faUserMinus} /></span> 로그아웃</p> 
+                </>
+            }
         </div>
         {/* 로그인 버튼 영역 (e) */}
 
@@ -39,7 +64,7 @@ const Navbar = () => {
         {/* 검색 (s) */}
         <div className="search-section">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
-            <input className="search-box" type="text" />
+            <input className="search-box" type="text" onKeyDown={(e) => {goSearch(e)}}/>
         </div>
         {/* 검색 (e) */}
        

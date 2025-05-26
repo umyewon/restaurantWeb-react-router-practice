@@ -1,11 +1,16 @@
-import React from 'react'
-import best from '../img/quality.png'
+import {useNavigate} from 'react-router-dom';
+import best from '../img/appraisal.png'
 import newIcon from '../img/new.png'
 
 const MenuCard = ({item}) => {
+    const detailNavigate = useNavigate();
+    const goToDetail = () => {
+        detailNavigate(`/product/${item.id}`);
+    }
+
   return (
     <div className="menucard-wrap">
-        <div className="img-wrap">
+        <div className="img-wrap" onClick={ goToDetail}>
             {item.choice? <img className="recommend-icon" src={best} /> : ''} 
             <a className="menu-img">
                 <img src={item?.img}/>

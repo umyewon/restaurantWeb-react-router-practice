@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router";
 /* 페이지 목록 : 전체상품페이지, 로그인 , 상세상품 페이지 */
 import MenuAll from './page/MenuAll'
 import Login from './page/Login'
-import MenuDetail from './page/MenuDetail';
+import PrivateRoute from './route/PrivateRoute';
 /* 페이지 목록 (e) */
 
 /* 컴포넌트 목록 */ 
@@ -23,18 +23,17 @@ import { Link } from 'react-router-dom';
 // 6.유저는 로그아웃할 수 있다.
 
 function App() {
-  const [authenticate, setAuthenticate] = useState(false);  // t:로그인 / f:로그아웃
-  useEffect(()=> {
-    console.log("AAA ?" ,authenticate);
-  }, [authenticate])
-  
+  const [ authenticate, setAuthenticate ] = useState(false);  // t:로그인 / f:로그아웃
+  const [ bascket, setBascket ] = useState(null);             // 장바구니
+
   return (
     <div>
-      <Navbar/>      {/* 네비게이션 바 */}
+      <Navbar authenticate = {authenticate} setAuthenticate = {setAuthenticate}/>      {/* 네비게이션 바 */}
       <Routes>
-        <Route path="/" element={<MenuAll/>}/>
+        <Route path="/" element={<MenuAll authenticate = {authenticate} />}/>
         <Route path="/login" element={<Login setAuthenticate = {setAuthenticate}/>}/>
-        <Route path="/product/:id" element={<MenuDetail/>}/>
+        <Route path="/product/:id" element={<PrivateRoute from = {'product'} authenticate = {authenticate}/>}/>
+        <Route path="/basket" element={<PrivateRoute from = {'bascket'} authenticate = {authenticate}/>}/>
       </Routes>
     </div>
   )
